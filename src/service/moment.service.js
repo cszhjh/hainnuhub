@@ -1,4 +1,5 @@
 const connection = require("../app/database");
+const { APP_HOST, APP_PORT } = require("../app/config");
 
 class MomentService {
   async create(userId, content) {
@@ -24,7 +25,7 @@ class MomentService {
         WHERE m.id = c.moment_id
         ) comments,
         (SELECT 
-          JSON_ARRAYAGG(CONCAT("http://localhost:8000/moment/images/", file.filename))
+          JSON_ARRAYAGG(CONCAT("${APP_HOST}:${APP_PORT}/moment/images/", file.filename))
         FROM file WHERE m.id = file.moment_id
         ) images
       FROM moment m
@@ -46,7 +47,7 @@ class MomentService {
         (SELECT COUNT(*) FROM comment c WHERE c.moment_id = m.id) commentCount,
         (SELECT COUNT(*) FROM moment_label ml WHERE ml.moment_id = m.id) labelCount,
         (SELECT 
-          JSON_ARRAYAGG(CONCAT("http://localhost:8000/moment/images/", file.filename))
+          JSON_ARRAYAGG(CONCAT("${APP_HOST}:${APP_PORT}/moment/images/", file.filename))
         FROM file WHERE m.id = file.moment_id
         ) images
       FROM moment m
