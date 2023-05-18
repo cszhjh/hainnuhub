@@ -1,7 +1,22 @@
-const app = require("./app");
-require("./app/database");
-const config = require("./app/config");
+import { createApp } from "vue";
 
-app.listen(config.APP_PORT, () => {
-  console.log(`服务器在${config.APP_PORT}端口启动成功`);
-});
+import "element-plus/dist/index.css";
+import "normalize.css";
+import "./assets/css/index.scss";
+import "./assets/icon/iconfont.css";
+
+import App from "./App";
+import router from "./router";
+import store, { setupStore } from "./store";
+import registerDirectives from "./directives";
+import { dispatchEventStorage } from "@/utils/utils";
+
+const app = createApp(App);
+
+app.use(registerDirectives);
+app.use(router);
+app.use(store);
+app.use(dispatchEventStorage);
+setupStore();
+
+app.mount("#app");

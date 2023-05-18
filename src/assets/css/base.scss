@@ -1,0 +1,94 @@
+:root {
+  --link: #007fff;
+  --body-width: 1100px;
+  --text: #61666d;
+  --text2: #9499A0;
+  --pink: #ff6699;
+  --icon: #9499a0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  overflow: overlay;
+  background: rgb(243,243,243);
+}
+
+html, body, #app {
+  width: 100vw;
+}
+
+a {
+  text-decoration: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(239, 239, 239);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #bfbfbf;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #bfbfbf;
+}
+
+::-webkit-scrollbar-corner {
+  background: #bfbfbf;
+}
+
+.a-link {
+  text-decoration: none;
+  color: var(--link);
+  cursor: pointer;
+}
+
+.header-body, .content-body, .footer-body {
+  width: var(--body-width);
+  margin: 0 auto;
+}
+
+.content-body {
+  padding-top: 5px;
+}
+
+.element-message {
+  left: calc(100vw / 2);
+}
+
+.a-link-anim {
+  position: relative;
+  cursor: pointer;
+  color: #4e5969;
+
+  &:hover {
+    color: #79bbff !important;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -3px;
+    bottom: -2px;
+    left: -3px;
+    transform: scale(0);
+    transition: all 0.3s ease;
+  }
+  &:hover::after {
+    border-bottom: 1px solid;
+    border-color: #409eff;
+    transform: scale(1);
+  }
+}
